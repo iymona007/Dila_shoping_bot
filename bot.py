@@ -88,14 +88,16 @@ def instagram(message):
     )
 
 
-  
 @app.route('/webhook', methods=['POST'])
-def webhook():  
+def webhook():
     json_str = request.get_data().decode('UTF-8')
     update = telebot.types.Update.de_json(json_str)
-    bot.process_new_updates([update])
-    return 'ok', 200
 
+    print("TELEGRAM UPDATE KELDI:", update)
+
+    bot.process_new_updates([update])
+
+    return 'ok', 200
 if __name__ == '__main__':
     bot.remove_webhook()
 
